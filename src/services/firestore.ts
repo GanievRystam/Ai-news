@@ -3,7 +3,6 @@ import { db } from '../firebase';
 
 export const saveFavoriteArticle = async (userId: string, article: any) => {
     try {
-        console.log('red')
     const userDoc = doc(db, 'favorites', userId);
     const userSnapshot = await getDoc(userDoc);
 

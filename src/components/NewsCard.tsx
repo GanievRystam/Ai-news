@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import { saveFavoriteArticle } from '../services/firestore';
 
@@ -26,7 +27,12 @@ const NewsCard: React.FC<NewsCardProps> = ({ title, description, imageUrl, artic
   };
 
   return (
-    <div className="bg-white shadow-lg p-4 rounded-lg">
+    <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5 }}
+    className="bg-white shadow-lg p-4 rounded-lg"
+  >
       <img src={imageUrl} alt="Article" className="w-full h-40 object-cover rounded-lg" />
       <h2 className="text-xl font-bold mt-2">{title}</h2>
       <p className="text-gray-600 mt-2">{description}</p>
@@ -36,7 +42,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ title, description, imageUrl, artic
       <button onClick={handleSaveFavorite} className="mt-2 bg-blue-500 text-white py-1 px-2 rounded">
         Save to Favorites
       </button>
-    </div>
+      </motion.div>
   );
 };
 

@@ -15,6 +15,6 @@ export const fetchNews = async (category: string) => {
     return response.data.articles;
   } catch (error) {
     console.error('Error fetching news:', error);
-    return [];
+    throw new Error('Unable to fetch news at this time');
   }
 };

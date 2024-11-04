@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Filters from './components/Filters';
 import NewsFeed from './components/NewsFeed';
 import { useAuth } from './context/AuthContext';
+import { Route, Routes } from 'react-router-dom';
+import FavoritesPage from './pages/FavoritesPage';
 
 const App: React.FC = () => {
   const [category, setCategory] = useState<string>('technology');
@@ -21,8 +23,10 @@ const App: React.FC = () => {
       ) : (
         <button onClick={login}>Login with Google</button>
       )}
-      <Filters setCategory={setCategory} />
-      <NewsFeed category={category}/>
+      <Routes>
+          <Route path="/" element={<><Filters setCategory={(category) => console.log(category)} /><NewsFeed category="technology" /></>} />
+          <Route path="/favorites" element={<FavoritesPage />} />
+        </Routes>
     </div>
   );
 };
